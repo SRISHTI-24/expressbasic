@@ -13,6 +13,12 @@ const members = [{
     name: "siya",
     email: "siya@gmail.com",
     status: 'inactive'
+},
+{
+    id:3,
+    name: "riya",
+    email: "riya@gmail.com",
+    status: 'active'
 }]
 
 /*const middleware = (req,res,next)=>{

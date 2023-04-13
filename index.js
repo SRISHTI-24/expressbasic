@@ -87,7 +87,21 @@ app.post('/adduser/',(req,res)=>{
         status:"inactive"
     }
     members.push(newmember)
-    res.status(200).json(members)
+    res.status(200).json(memiiiiiiiibers)
+})
+
+app.delete('/deleteuser/:uid', (req,res) =>{
+    const id = parseInt(req.params.uid)
+    const found = members.some(member => member.id ===id)
+    if(found)
+    {
+         const results = members.filter(member => member.id !== id)
+         res.status(200).json(results)
+    }
+    else{
+        res.status(400).json({msg: 'no member found'})
+    }
+
 })
 
 const PORT = 1000;

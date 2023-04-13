@@ -67,15 +67,26 @@ app.get("/showuser/:id",(req,res) =>{
     
     user.length!==0 ?res.status(200).json(user):res.status(200).json({msg: 'user not found'})
 })
+// app.post('/adduser/',(req,res)=>{
+//     console.log(req.body);
+//     // const name = req.body.name;
+//     // const email = req.body.email;
+//     // const pass = req.body.password;
+//     const {name, email, password} = req.body;
+//     console.log(name,email,password);
+//     members.push({id:uuid.v4(), name, email});
+//     members.push({id:5,name, email});
+//     res.status(200).json(members)
+// })
 app.post('/adduser/',(req,res)=>{
-    console.log(req.body);
-    // const name = req.body.name;
-    // const email = req.body.email;
-    // const pass = req.body.password;
-    const {name, email, password} = req.body;
-    console.log(name,email,password);
-    members.push({id:uuid.v4(), name, email});
-    members.push({id:5,name, email});
+    const {name,email} = req.body;
+    const newmember ={
+        id: uuid.v4(),
+        name,
+        email,
+        status:"inactive"
+    }
+    members.push(newmember)
     res.status(200).json(members)
 })
 

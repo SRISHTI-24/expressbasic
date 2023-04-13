@@ -1,5 +1,7 @@
 const express = require('express')
+const uuid = require('uuid')
 
+// uuid => unique id (it provides unique id)
 const app = express()
 
 
@@ -54,7 +56,7 @@ app.delete('/delete',(req,res)=>{
     res.send('delete request');
 })
 */
-
+app.use(express.json())
 app.get('/showallusers',(req,res) =>{
     res.status(200).json(members)
 })
@@ -65,6 +67,18 @@ app.get("/showuser/:id",(req,res) =>{
     
     user.length!==0 ?res.status(200).json(user):res.status(200).json({msg: 'user not found'})
 })
+app.post('/adduser/',(req,res)=>{
+    console.log(req.body);
+    // const name = req.body.name;
+    // const email = req.body.email;
+    // const pass = req.body.password;
+    const {name, email, password} = req.body;
+    console.log(name,email,password);
+    members.push({id:uuid.v4(), name, email});
+    members.push({id:5,name, email});
+    res.status(200).json(members)
+})
+
 const PORT = 1000;
 
 app.listen(PORT, ()=>console.log('server is running at',PORT));
